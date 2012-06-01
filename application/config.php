@@ -18,4 +18,15 @@ define('DB_NAME', 'puzzle');    // database name
 
 //Do not change this line
 define('DB_COM', DB_TYPE.':dbname='.DB_NAME.';host='.DB_HOST);
+
+/**
+ *  DO NOT CHANGE ANYTHING BENEATH THIS LINE 
+ */
+
+set_include_path(
+	realpath( __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'classes' )
+	. PATH_SEPARATOR . get_include_path()
+);
+spl_autoload_register();
+
 ?>
