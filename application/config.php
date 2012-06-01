@@ -14,10 +14,8 @@ define('DB_TYPE', 'mysql');         // database type
 define('DB_USERNAME', 'root');      // database username
 define('DB_PASSWORD', '123321');    // database password
 define('DB_HOST', 'localhost');     // database host
-define('DB_NAME', 'diy_puzzle');    // database name
+define('DB_NAME', 'puzzle');    // database name
 
 //Do not change this line
 define('DB_COM', DB_TYPE.':dbname='.DB_NAME.';host='.DB_HOST);
-?>
-
 ?>
