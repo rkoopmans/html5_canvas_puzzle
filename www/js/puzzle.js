@@ -7,7 +7,7 @@ function onDocumentReady() {
 		canvas.height = canvas.offsetHeight;
 		canvas.width = canvas.offsetWidth;
 		img = new Image();
-		img.src = 'img/puzzle1.jpg';
+		img.src = 'img/uploads/beachsand.jpg';
 		finalDataURL = "Base64";
 		img.onload = function () {
 			ctx.drawImage(img, 0, 0);
@@ -15,7 +15,7 @@ function onDocumentReady() {
 			clear(0, 0, canvas.width, canvas.height);
 			init();
 		};
-		const PIECES = 2;
+		const PIECES = 3;
 		piece = {
 			width:(canvas.width / PIECES),
 			height:(canvas.height / PIECES)
@@ -36,7 +36,6 @@ function onDocumentReady() {
 
 		this.draw = function(){
 			ctx.drawImage(this.img, this.x0, this.y0);
-			console.log('draw:' +  this.x0 + " - " + this.y0);
 		}
 		this.remove = function(){
 			clear(this.x0, this.y0, piece.width, piece.height);
