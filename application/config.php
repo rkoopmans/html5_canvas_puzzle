@@ -20,7 +20,7 @@ define('DB_NAME', 'puzzle');    // database name
 define('DB_COM', DB_TYPE.':dbname='.DB_NAME.';host='.DB_HOST);
 
 /**
- *  DO NOT CHANGE ANYTHING BENEATH THIS LINE 
+ *  DO NOT CHANGE ANYTHING BENEATH THIS LINE
  */
 
 define('onPage', true);
@@ -30,5 +30,4 @@ set_include_path(
 	. PATH_SEPARATOR . get_include_path()
 );
 spl_autoload_register();
-
 ?>

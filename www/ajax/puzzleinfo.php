@@ -11,7 +11,7 @@ if(isset($_GET['id'])){
 		echo '<pictureid>'.$data['picture_id'].'</pictureid>';
 		echo '<user>'.$data['user_id'].'</user>';
 		echo '<times_completed>'.$data['times_completed'].'</times_completed>';
-		echo '<url>'.$data['picture_url'].'</url>';
+		echo '<url>img/uploads/'.$data['picture_url'].'</url>';
 		echo '</puzzle>';
 
 	}catch(Exception $e){

@@ -7,7 +7,7 @@ function onDocumentReady() {
 		canvas.height = canvas.offsetHeight;
 		canvas.width = canvas.offsetWidth;
 		img = new Image();
-		img.src = 'img/uploads/beachsand.jpg';
+		img.src = getXML('url');
 		finalDataURL = "Base64";
 		img.onload = function () {
 			ctx.drawImage(img, 0, 0);
@@ -120,6 +120,14 @@ function onDocumentReady() {
 		if(canvas.toDataURL() == finalDataURL){
 			alert('finished');
 		}
+	}
+}
+function getXML(name){
+	var request = new XMLHttpRequest();
+	request.open('GET', 'ajax/puzzleinfo.php?id=1', false);
+	request.send();
+	if (request.status === 200) {
+		return request.responseXML.getElementsByTagName(name)[0].childNodes[0].nodeValue;
 	}
 }
 Array.prototype.shuffle = function() {
