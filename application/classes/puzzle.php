@@ -8,7 +8,6 @@ class puzzle {
 
     private $db;
     private $puzzle_id = 0;
-    private $imagePath = '';
 
     private $puzzleinfo;
 
@@ -46,5 +45,10 @@ class puzzle {
     public function getPuzzleInfo(){
         return $this->puzzleinfo;
     }
+	public function __destruct(){
+		$this->db = null;
+		$this->puzzleinfo = null;
+		$this->puzzle_id = null;
+	}
 }
 ?>

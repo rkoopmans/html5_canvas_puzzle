@@ -3,28 +3,28 @@
  */
 function onDocumentReady() {
 	var canvas = document.getElementById("cPuzzle");
-		ctx = canvas.getContext('2d');
-		canvas.height = canvas.offsetHeight;
-		canvas.width = canvas.offsetWidth;
-		img = new Image();
-		img.src = getXML('url');
-		finalDataURL = "Base64";
-		img.onload = function () {
-			ctx.drawImage(img, 0, 0);
-			finalDataURL = canvas.toDataURL();
-			clear(0, 0, canvas.width, canvas.height);
-			init();
-		};
-		const PIECES = 3;
-		piece = {
-			width:(canvas.width / PIECES),
-			height:(canvas.height / PIECES)
-		};
-		imagePieces = [];
-		solved = false;
-		mouse = {x:0, y:0};
-		selectedTile = 0;
-		tileSelected = false;
+	ctx = canvas.getContext('2d');
+	canvas.height = canvas.offsetHeight;
+	canvas.width = canvas.offsetWidth;
+	img = new Image();
+	img.src = getXML('url');
+	finalDataURL = "Base64";
+	img.onload = function () {
+		ctx.drawImage(img, 0, 0);
+		finalDataURL = canvas.toDataURL();
+		clear(0, 0, canvas.width, canvas.height);
+		init();
+	};
+	const PIECES = 3;
+	piece = {
+		width:(canvas.width / PIECES),
+		height:(canvas.height / PIECES)
+	};
+	imagePieces = [];
+	solved = false;
+	mouse = {x:0, y:0};
+	selectedTile = 0;
+	tileSelected = false;
 
 	var tile = function (startx, starty, base64_code) {
 		this.x0 = startx;
@@ -32,6 +32,7 @@ function onDocumentReady() {
 
 		this.base64 = base64_code;
 		this.img = new Image();
+		this.img.pappa = this;
 		this.img.src = this.base64;
 
 		this.draw = function(){
@@ -93,7 +94,9 @@ function onDocumentReady() {
 			for (var j = 0; j < PIECES; j++) {
 				tileList[counter].x0 = j * piece.width;
 				tileList[counter].y0 = i * piece.height;
-				tileList[counter].draw();
+				tileList[counter].img.onload=function(e){
+					this.pappa.draw();
+				}
 				counter ++;
 			}
 		}

@@ -1,8 +1,5 @@
-/**
- * File: ${NAME}
- * Author: remco
- * Date: 6/21/12
-*/
- <?php
-
- ?>
+<h1>Welkom</h1>
+<p>
+	Welkom op Puzzlecity!<br />
+	Maak hier puzzels en deel ze met je vrienden!
+</p>
