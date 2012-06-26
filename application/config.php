@@ -30,7 +30,8 @@ set_include_path(
 	. PATH_SEPARATOR . get_include_path()
 );
 spl_autoload_register();
-
+ob_start();
+session_start();
 $URI = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', $URI);
 $last_url_segment = end($segments);

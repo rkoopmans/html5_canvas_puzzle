@@ -54,15 +54,15 @@ class upload
 		$this->filepath = explode('../../www/img/uploads/', $this->filename);
 		$sql = "INSERT INTO
 					pictures(
-
+						 user_id,
 						 picture_url,
 						 titel)
 							VALUES
-								(
+								(:userid,
 								 :pictureurl,
 								 :title)";
 		$query = database::singleton()->prepare($sql);
-		//$query->bindParam(':userid',0, PDO::PARAM_INT);
+		$query->bindParam(':userid',$_SESSION['user_id'], PDO::PARAM_INT);
 		$query->bindParam(':pictureurl', $this->filepath[1], PDO::PARAM_STR);
 		$query->bindParam(':title', $this->imageTitel, PDO::PARAM_STR);
 		$query->execute();

@@ -4,7 +4,9 @@ if(isset($_GET['p']))
 	$page = $_GET['p'];
 else
 	$page = null;
+//session_destroy();
 ?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,6 +20,9 @@ else
 				case 'puzzle':
 					echo '<script type="text/javascript" src="'.SITE_URL.'/js/puzzle.js"></script>';
 				break;
+				case 'login':
+					echo '<script type="text/javascript" src="'.SITE_URL.'/js/login.js"></script>';
+				break;
 			}
 		?>
 		<link rel="stylesheet" href="<?php echo SITE_URL ?>/styles/main.css" />
@@ -30,12 +35,20 @@ else
 			<div>
 				<ul>
 					<li><a href="<?php echo SITE_URL ?>/index.php">Home</a></li>
-					<li><a href="<?php echo SITE_URL ?>/index.php?p=gallery">Gallery</a></li>
-					<li><a href="<?php echo SITE_URL ?>/index.php?p=submit">Submit</a></li>
+					<?php
+					if(isset($_SESSION['loggedin'])){
+					echo '<li><a href="'.SITE_URL.'/index.php?p=gallery">Gallery</a></li>';
+					echo '<li><a href="'.SITE_URL.'/index.php?p=submit">Submit</a></li>';
+					echo '<li><a href="'.SITE_URL.'/index.php?p=logout">Uitloggen</a></li>';
+					}else{
+						echo '<li><a href="'.SITE_URL.'/index.php?p=login">Login</a></li>';
+						echo '<li><a href="'.SITE_URL.'/index.php?p=register">Register</a></li>';
+					}
+					?>
 				</ul>
 				<div>
-					<form >
-						<input type="text" placeholder="Sea" />
+					<form action="<?php echo SITE_URL ?>/index.php?p=search" method="post">
+						<input name="string" type="text" placeholder="Sea" />
 						<input type="submit" value="Search" />
 					</form>
 				</div>
@@ -52,6 +65,18 @@ else
 					break;
 					case 'puzzle':
 						include('../application/pages/puzzle.php');
+					break;
+					case 'login':
+						include('../application/pages/login.php');
+					break;
+					case 'register':
+						include('../application/pages/register.php');
+					break;
+					case 'logout':
+						include('../application/pages/logout.php');
+					break;
+					case 'search':
+						include('../application/pages/search.php');
 					break;
 					default:
 						include('../application/pages/index.php');

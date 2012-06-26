@@ -112,8 +112,8 @@ function onDocumentReady() {
 		tileList[tile2].y0 = t1[1];
 
 		tileList[tile1].remove();
-		tileList[tile1].draw();
 		tileList[tile2].remove();
+		tileList[tile1].draw();
 		tileList[tile2].draw();
 	}
 	function clear(startx, starty, endx, endy) {
