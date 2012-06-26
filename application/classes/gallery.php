@@ -21,7 +21,7 @@ class gallery
 	 * @return array contains all information
 	 */
 	public function getPuzzles($page){
-		$this->page = $page * 1;
+		$this->page = $page * 10;
 		$this->db->sql = "	SELECT
 								*
 							FROM

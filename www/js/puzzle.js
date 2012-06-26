@@ -127,11 +127,22 @@ function onDocumentReady() {
 }
 function getXML(name){
 	var request = new XMLHttpRequest();
-	request.open('GET', 'ajax/puzzleinfo.php?id=1', false);
+	request.open('GET', 'ajax/puzzleinfo.php?id='+getUrlSegment('id'), false);
 	request.send();
 	if (request.status === 200) {
 		return request.responseXML.getElementsByTagName(name)[0].childNodes[0].nodeValue;
 	}
+}
+function getUrlSegment(id)
+{
+	var vars = [], hash;
+	var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	for(var i = 0; i < hashes.length; i++){
+		hash = hashes[i].split('=');
+		vars.push(hash[0]);
+		vars[hash[0]] = hash[1];
+	}
+	return vars[id];
 }
 Array.prototype.shuffle = function() {
 	var len = this.length;
