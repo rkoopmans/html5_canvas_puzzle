@@ -23,6 +23,9 @@ else
 				case 'login':
 					echo '<script type="text/javascript" src="'.SITE_URL.'/js/login.js"></script>';
 				break;
+				case 'register':
+					echo '<script type="text/javascript" src="'.SITE_URL.'/js/register.js"></script>';
+				break;
 			}
 		?>
 		<link rel="stylesheet" href="<?php echo SITE_URL ?>/styles/main.css" />

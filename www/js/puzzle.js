@@ -25,6 +25,7 @@ function onDocumentReady() {
 	mouse = {x:0, y:0};
 	selectedTile = 0;
 	tileSelected = false;
+	information = {title: getXML('titel'), timesCompleted: getXML('times_completed'), user: getXML('user')}
 
 	var tile = function (startx, starty, base64_code) {
 		this.x0 = startx;
@@ -85,6 +86,10 @@ function onDocumentReady() {
 		new initPuzzle();
 		drawTiles();
 		setInterval(checkIfFinished,1000);
+
+		document.getElementById('title-puz').innerHTML = information.title;
+		document.getElementById('gemaakt-door').innerHTML = information.user;
+		document.getElementById('aantal-keer-gemaakt').innerHTML = information.timesCompleted;
 	}
 	function drawTiles(){
 		var counter = 0;
@@ -121,17 +126,26 @@ function onDocumentReady() {
 	}
 	function checkIfFinished(){
 		if(canvas.toDataURL() == finalDataURL){
-			alert('finished');
+			alert('Puzzle completed!');
 		}
 	}
 }
+var xml = "";
+/**
+ * @param name string Name of the XML tag
+ * @return {String} returns the content of the XML tag
+ */
 function getXML(name){
-	var request = new XMLHttpRequest();
-	request.open('GET', 'ajax/puzzleinfo.php?id='+getUrlSegment('id'), false);
-	request.send();
-	if (request.status === 200) {
-		return request.responseXML.getElementsByTagName(name)[0].childNodes[0].nodeValue;
+	if(!xml){
+		var request = new XMLHttpRequest();
+		request.open('GET', 'ajax/puzzleinfo.php?id='+getUrlSegment('id'), false);
+		request.send();
+		if (request.status === 200) {
+			xml = request.responseXML;
+			return request.responseXML.getElementsByTagName(name)[0].childNodes[0].nodeValue;
+		}
 	}
+	return xml.getElementsByTagName(name)[0].childNodes[0].nodeValue;
 }
 function getUrlSegment(id)
 {

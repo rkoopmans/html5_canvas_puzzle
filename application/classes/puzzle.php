@@ -22,6 +22,7 @@ class puzzle {
                             picture_id,
                             times_completed,
                             picture_url,
+                            titel,
                             username as user_id
                           FROM
                             pictures

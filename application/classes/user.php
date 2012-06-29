@@ -108,6 +108,8 @@ class user
 		$_SESSION['user_id'] = $query->fetchColumn(0);
 		$_SESSION['loggedin'] = true;
 		$this->loggedin = true;
+
+		echo 'success';
 	}
 }
 ?>

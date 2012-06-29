@@ -1,3 +1,7 @@
+<?php
+	if(!$_SESSION['loggedin'])
+		die('YOu are not logged in');
+?>
 <div id="options" style="display:block; text-align:center; margin:auto auto;margin-bottom:8px;">
 	<input type="text" id="titel" placeholder="Titel of your image" style="width:400px;height:40px;font-size:18px" />
 	<input type="submit" id="upload" value="upload"  style="width:100px;height:40px;font-size:18px" />
