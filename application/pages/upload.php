@@ -1,5 +1,5 @@
 <?php
-	if(!$_SESSION['loggedin'])
+	if(!isset($_SESSION['loggedin']))
 		die('YOu are not logged in');
 ?>
 <div id="options" style="display:block; text-align:center; margin:auto auto;margin-bottom:8px;">

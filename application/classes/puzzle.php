@@ -18,7 +18,9 @@ class puzzle {
         $this->db = new database();
         $this->puzzle_id = $puzzle_id;
 
-        $this->db->sql = "SELECT
+	}
+	private function fetchPuzzle(){
+		$this->db->sql = "SELECT
                             picture_id,
                             times_completed,
                             picture_url,
@@ -34,18 +36,30 @@ class puzzle {
                             picture_id = :pictureID
 						  ";
 
-        $this->db->result = $this->db->singleton()->prepare($this->db->sql);
-        $this->db->result->bindParam(':pictureID', $this->puzzle_id, PDO::PARAM_INT);
-        $this->db->result->execute();
-        $this->puzzleinfo = $this->db->result->fetch();
+		$this->db->result = $this->db->singleton()->prepare($this->db->sql);
+		$this->db->result->bindParam(':pictureID', $this->puzzle_id, PDO::PARAM_INT);
+		$this->db->result->execute();
+		$this->puzzleinfo = $this->db->result->fetch();
 
-        if(!$this->puzzleinfo)
-            throw new Exception('Error! Puzzle does not exist!!');
-
+		if(!$this->puzzleinfo)
+			throw new Exception('Error! Puzzle does not exist!!');
 	}
     public function getPuzzleInfo(){
+		$this->fetchPuzzle();
         return $this->puzzleinfo;
     }
+	public function updatePuzzle(){
+		$this->db->sql = 'UPDATE
+							pictures
+						  SET
+						  	times_completed = times_completed + 1
+						  WHERE
+						  	( picture_id = :picid )';
+		$this->db->result = database::singleton()->prepare($this->db->sql);
+		$this->db->result->bindParam(':picid', $this->puzzle_id, PDO::PARAM_INT);
+
+		$this->db->result->execute();
+	}
 	public function __destruct(){
 		$this->db = null;
 		$this->puzzleinfo = null;

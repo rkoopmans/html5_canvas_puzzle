@@ -80,12 +80,12 @@ function onDocumentReady() {
 			}
 		}
 	}
-
+	var checkInterval;
 	//Function initialize starts when the source image is loaded.
 	function init(){
 		new initPuzzle();
 		drawTiles();
-		setInterval(checkIfFinished,1000);
+		checkInterval = setInterval(checkIfFinished,100);
 
 		document.getElementById('title-puz').innerHTML = information.title;
 		document.getElementById('gemaakt-door').innerHTML = information.user;
@@ -126,7 +126,13 @@ function onDocumentReady() {
 	}
 	function checkIfFinished(){
 		if(canvas.toDataURL() == finalDataURL){
-			alert('Puzzle completed!');
+			window.clearInterval(checkInterval);
+			var request = new XMLHttpRequest();
+			request.open('POST', 'ajax/puzzlecompleted.php?id='+getUrlSegment('id'), false);
+			request.send();
+			if(request.status === 200){
+				alert('Puzzle completed!');
+			}
 		}
 	}
 }
