@@ -2,7 +2,7 @@
 /**
  * File: db.php
  * Author: Remco Koopmans
- * Date: 5/31/12
+ * Date: 6/17/12
  */
 if ( !defined( 'DB_COM' ) ) define( 'DB_COM' , null );
 if ( !defined( 'DB_USERNAME' ) ) define( 'DB_USERNAME' , null );
