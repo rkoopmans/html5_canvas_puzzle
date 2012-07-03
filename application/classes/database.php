@@ -21,7 +21,7 @@ class database extends PDO
 
 	public $sql = "";
         public $result;
-        
+
 	/**
 	 * @param string $dsn DATABASETYPE:dbname=DATABASE_NAME;host=DATABASE_HOST
 	 * @param string $username database username
@@ -35,7 +35,7 @@ class database extends PDO
 	}
         /**
          *
-         * @return mixed 
+         * @return mixed
          */
 	public static function singleton()
 	{
