@@ -12,7 +12,7 @@ define('ZOUT', '#R4nd0mS4lT!@');
 //database settings
 define('DB_TYPE', 'mysql');         // database type
 define('DB_USERNAME', 'root');      // database username
-define('DB_PASSWORD', '123321');    // database password
+define('DB_PASSWORD', '');    // database password
 define('DB_HOST', 'localhost');     // database host
 define('DB_NAME', 'puzzle');    // database name
 
